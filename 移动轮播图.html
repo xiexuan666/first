@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .major {
+      max-width: 750px;
+      margin: 0 auto;
+      background-color: red;
+      height: 100vh;
+    }
+
+    .firstly {
+      overflow: hidden;
+    }
+    ul {
+      list-style: none;
+      /* 启用弹性布局把li横向排列 */
+      display: flex;
+      /* ul要给足够的宽度让多个子元素横向排列 */
+      width: 600%;
+      /* 添加一个过渡动画 */
+      transition: transform 400ms;
+    }
+    li {
+      /* 让每个li占1份就行 */
+      flex:1;
+    }
+    img {
+      width: 100%;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="major">
+    <div class="firstly">
+      <ul>
+        <!-- li*6>a[href=#]>img[src="./images/1.jpg"] -->
+        <li><a href="#"><img src="../images/1..jpg" alt=""></a></li>
+        <li><a href="#"><img src="../images/2..jpg" alt=""></a></li>
+        <li><a href="#"><img src="../images/3..jpg" alt=""></a></li>
+        <li><a href="#"><img src="../images/4..jpg" alt=""></a></li>
+        <li><a href="#"><img src="../images/5..jpg" alt=""></a></li>
+        <li><a href="#"><img src="../images/6..jpg" alt=""></a></li>
+      </ul>
+    </div>
+  </div>
+</body>
+<!-- 引入人家的类库，进行注册左右滑动事件 -->
+<script src="./07-zepto.js"></script>
+<script src="./08-touch.js"></script>
+<script>
+// 获取ul
+let ul = document.querySelector ('.firstly > ul' );
+// 获取图片长度
+let imgWidth = document.querySelector ('.firstly').clientWidth;
+let currentIndex = 1 ;
+// 获取元素，注册元素事件
+$('.firstly').on('swipeLeft',function(){
+    // 让图片从n到n+1
+    currentIndex++;
+   // 算出ul应该在的位置，设置给他
+  // ul位置 = 索引 * 图片宽度 * -1
+  let target = currentIndex*imgWidth*-1;
+  ul.style.transfrom = `translate(${target}px)`;
+})
+// 实现右边滑动
+$('.firstly').on('swipeRight',function() {
+// 让图片从n到n-1
+currentIndex--;
+let target = currentIndex *imgWidth *-1;
+ul.style.transfrom = `translate(${target}px)`;
+})
+// 让ul显示的是第一张图片
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>

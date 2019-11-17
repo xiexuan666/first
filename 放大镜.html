@@ -1,0 +1,113 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .box {
+      width: 450px;
+      height: 450px;
+      border: 1px solid #aaa;
+      position: relative;
+      top: 100px;
+      left: 100px;
+    }
+
+    .small {
+      width: 450px;
+      height: 450px;
+      position: absolute;
+    }
+
+    .mask {
+      position: absolute;
+      background-color: rgba(255, 255, 0, .3);
+      width: 225px;
+      height: 225px;
+      top: 0;
+      left: 0;
+      display: none;
+    }
+
+    .big {
+      width: 450px;
+      height: 450px;
+      border: 1px solid #aaa;
+      position: absolute;
+      left: 500px;
+      top: 0;
+      overflow: hidden;
+      display: none;
+    }
+
+    .big>img {
+      width: 900px;
+      height: 900px;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="small">
+      <img src="../images/s.jpg" alt="">
+      <div class="mask"></div>
+    </div>
+    <div class="big">
+      <img src="../images/big.jpg" alt="">
+    </div>
+  </div>
+</body>
+<script>
+// 获取元素
+let small = document.querySelector ('.small');
+let mask = document.querySelector ('.mask');
+let big  = document.querySelector ('.big');
+// 鼠标移入事件
+small.onmouseover = function () {
+    mask.style.display = 'block';
+    big.style.display = 'block';
+}
+// 鼠标移除事件
+small.onmouseoout = function () {
+    mask.style.display = 'none';
+    big.style.display = 'none';
+}
+// 获取box这个元素
+let box = document.querySelector ('.box');
+// 获取大图
+let bigImg = document.querySelector ('.big < img');
+// 给鼠标做移除事件
+small.onmouseover = function (event) {
+let x =event.pageX;
+let y =event.pageY;
+let smallOffsetLeft =box.smallOffsetleft;
+let smallOffsetTop = box.smallOffsettop;
+// 求出遮罩宽高度的一半
+let maskHalfWidth = mask.offsetWidth / 2 ;
+let maskHalfHeight = mask.offsetHeigth /2 ;
+// 根据公式计算出遮罩的移动
+let left = x - smallOffsetLeft - maskHalfWidth;
+let top  = y - smallOffsetTop - maskHalfHeight;
+// 限定遮罩的范围
+if (left<= 0) {left = 0};
+top=top<=0?0:top;
+
+
+
+}
+
+
+</script>
+</html>

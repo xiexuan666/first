@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #box {
+        width: 200px;
+        height: 200px;
+        background-color:pink;
+    }
+    
+    </style>
+</head>
+<body>
+    <div id="box">
+    </div>
+    <input type="button"value="按钮也添加快速点击" id="btn">
+    
+</body>
+<script>
+    // 获取元素
+    let box = document.querySelector ("#box");
+    let btn = document.querySelector ("#btn");
+    // 给box天剑快速点击事件
+    tapEvent (box,function (){
+        console.log('这才是快速点击执行业务代码');
+        
+    }) 
+    tapEvent(btn,function(){
+        alert("弹窗");
+    })
+
+
+</script>
+</html>

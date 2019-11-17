@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .weibo {
+            width: 600px;
+            border: 1px solid #ccc;
+            margin: 100px auto;
+            padding: 10px;
+
+        }
+
+        .weibo-text {
+            width: 590px;
+            height: 140px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            resize: none;
+        }
+
+        .weibo-text:focus {
+            border-color: #f60;
+        }
+
+        .weibo-btn {
+            width: 80px;
+            height: 30px;
+            background-color: #f90;
+            color: #fff;
+            border: 0 none;
+            margin-top: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            outline: 0 none;
+        }
+
+        .weibo-list {
+            padding-top: 10px;
+        }
+
+        .weibo-list li {
+            font-size: 14px;
+            line-height: 30px;
+            border-bottom: 1px dotted #ccc;
+            overflow: hidden;
+        }
+
+        .weibo-list li p {
+            float: left;
+        }
+
+        .weibo-list li span {
+            float: right;
+            cursor: pointer;
+        }
+
+        .weibo-list li input {
+            height: 24px;
+            line-height: 24px;
+            width: 300px;
+            font-size: 14px;
+            border: 0 none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="weibo">
+        <textarea class="weibo-text"></textarea>
+        <input class="weibo-btn" value="发布" type="button">
+        <ul class="weibo-list">
+            <!-- <li>
+                <p>小埋小埋小埋小埋小埋</p>
+                <span>删除</span>
+            </li>
+            <li>
+                <p>朋友问我溺水三千支取一瓢是什么意思我说世界之大我只要他</p>
+                <span>删除</span>
+            </li>
+            <li>
+                <p>1野搏7死你</p>
+                <span>删除</span>
+            </li>
+        </ul> -->
+    </div>
+</body>
+<script src="./kit.js"></script>
+
+<script>
+    // 获取元素
+    let text = document.querySelector('.weibo-text');
+    let btn = document.querySelector('.weibo-btn');
+    let ul = document.querySelector('.weibo-list');
+    //   需要在最前面创建一个li放在ul里面最前面
+    let date = localStorage.getItem('microblog');
+
+    // 把字符串转换成数组
+    // 中级版本
+    let arr = !date ? [] : JSON.parse(date);
+    // 遍历数组把每个数组获取出来变成li
+    arr.forEach(function (e) {
+        // 创建一个新的li
+        let li = document.releaseEvents('li');
+        // 给li添加新的内容
+        let time = formatDate();
+        // 这里有点不懂
+        li.innerHTML = '<p> class = "content">' + e.content + '</p><span class = "del">删除</span><em class = "time">' + e.time + '</em>';
+        // 把li放在ul里面
+        let first = ul.children[0];
+        ul.insertBefore(li, first);
+        // 注册事件
+        btn.onclick = function () {
+            // 得到文本域的内容
+            let content = text.value;
+            // 创建一个新的li
+            let li = document.createElement('li');
+            // 给li添加内容
+            let time = formatDate();
+            li.innerHTML = '<p> class = "content">  ' + content + '</p><span class = "del">删除 </span><em class = "time"> ' + time + '</em>';
+            // 把li放到ul里面去然后用children实现
+            let first = ul.children[0];
+            ul.insertBefore  (li,first);
+            // 把文本清空
+            text.value = '' ;
+            // 数组里面要存储数据
+            let obj = {
+                content :content,
+                time : time
+            };
+            // 把数据存在数组里面，然后把数组存储到localstorage
+            arr.push(obj);
+            let json = JSON.stringify(arr);
+            localStorage.setItem('microblog',json);
+        }
+        // 实现删除效果
+        
+
+    })
+
+
+
+
+</script>
+
+</html>
